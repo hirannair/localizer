@@ -155,6 +155,9 @@ func (p *ServiceForward) createServerPod(ctx context.Context) (func(), *corev1.P
 							Value: "linuxserver/mods:openssh-server-ssh-tunnel",
 						},
 					},
+					SecurityContext: &corev1.PodSecurityContext{
+						RunAsUser:      1000,
+					},
 					ReadinessProbe: &corev1.Probe{
 						Handler: corev1.Handler{
 							TCPSocket: &corev1.TCPSocketAction{
